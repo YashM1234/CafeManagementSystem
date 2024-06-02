@@ -11,47 +11,45 @@ import io.swagger.v3.oas.annotations.servers.Server;
 @OpenAPIDefinition(
         info = @Info(
                 title = "Cafe Management System",
-                description = "Cafe Management System API Documentation",
-                summary = "All Api documentation",
-                termsOfService = "T&C",
+                description = "API documentation for managing cafe operations",
+                summary = "Documentation of all APIs for the Cafe Management System",
+                termsOfService = "Terms of service for using the Cafe Management System API",
                 contact = @Contact(
-                        name = "Yash Mungole",
-                        email = "yashmungolerpg@gmail.com"
+                        name = "Cafe Management Support",
+                        email = "support@cafemanagement.com"
                 ),
                 version = "v1.0"
-
         ),
         servers = {
                 @Server(
-                        description = "local",
+                        description = "Local environment",
                         url = "http://localhost:8080"
                 ),
                 @Server(
-                        description = "dev",
-                        url = "http://localhost:8080"
+                        description = "Development environment",
+                        url = "http://dev.cafemanagement.com"
                 ),
                 @Server(
-                        description = "test",
-                        url = "http://localhost:8080"
+                        description = "Testing environment",
+                        url = "http://test.cafemanagement.com"
                 ),
                 @Server(
-                        description = "acc",
-                        url = "http://localhost:8080"
+                        description = "Acceptance environment",
+                        url = "http://acc.cafemanagement.com"
                 ),
                 @Server(
-                        description = "prod",
-                        url = "http://localhost:8080"
+                        description = "Production environment",
+                        url = "http://prod.cafemanagement.com"
                 )
         }
-
 )
 @SecurityScheme(
-        name= "auth",
+        name = "bearerAuth",
         in = SecuritySchemeIn.HEADER,
         type = SecuritySchemeType.HTTP,
         bearerFormat = "JWT",
         scheme = "bearer",
-        description = "security description"
+        description = "JWT authentication for the Cafe Management System API"
 )
 public class OpenApiConfig {
 }
