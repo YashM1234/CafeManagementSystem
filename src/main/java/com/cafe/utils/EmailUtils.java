@@ -15,7 +15,7 @@ public class EmailUtils {
 
     public void sendMessage(String to, String subject, String text, List<String> list){
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("yashmungolerpg@gmail.com");
+        message.setFrom("enter your email address to send mail");
         message.setTo(to);
         message.setSubject(subject);
         message.setText(text);
