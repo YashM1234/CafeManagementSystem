@@ -10,6 +10,9 @@ import java.io.Serializable;
 @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email=:email")
 @NamedQuery(name = "User.getAllUser",
         query = "SELECT new com.cafe.wrapper.UserWrapper(u.id,u.name,u.email,u.phoneNumber,u.status) from User u WHERE u.role='user'")
+@NamedQuery(name = "User.getAllAdmin",
+        query = "SELECT u.email from User u WHERE u.role='admin'")
+
 @NamedQuery(name = "User.updateStatus", query = "UPDATE User u SET u.status=:status WHERE u.id=:id")
 @Data
 @Entity
