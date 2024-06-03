@@ -4,6 +4,8 @@ import com.cafe.constants.CafeConstants;
 import com.cafe.service.UserService;
 import com.cafe.utils.CafeUtils;
 import com.cafe.wrapper.UserWrapper;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,10 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Operation(
+            summary = "User Signup",
+            description = "Endpoint to register a new user"
+    )
     @PostMapping("/signup")
     public ResponseEntity<String> signUp(@RequestBody(required = true) Map<String, String> requestMap){
 
@@ -31,6 +37,10 @@ public class UserController {
         return CafeUtils.getResponseEntity(CafeConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @Operation(
+            summary = "User Login",
+            description = "Endpoint to authenticate and login a user"
+    )
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody(required = true) Map<String, String> requestMap){
         try{
@@ -41,6 +51,11 @@ public class UserController {
         return CafeUtils.getResponseEntity(CafeConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @Operation(
+            summary = "Get All Users",
+            description = "Endpoint to retrieve a list of all users"
+    )
+    @SecurityRequirement(name = "bearerAuth")
     @GetMapping("/get")
     public ResponseEntity<List<UserWrapper>> getAllUser(){
         try{
@@ -51,6 +66,11 @@ public class UserController {
         return new ResponseEntity<>(new ArrayList<>(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @Operation(
+            summary = "Update User",
+            description = "Endpoint to update user information"
+    )
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping("/update")
     public ResponseEntity<String> update(@RequestBody(required = true) Map<String, String> requestMap){
         try{
@@ -60,4 +80,49 @@ public class UserController {
         }
         return CafeUtils.getResponseEntity(CafeConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @Operation(
+            summary = "Check Token",
+            description = "Endpoint to check token"
+    )
+    @SecurityRequirement(name = "bearerAuth")
+    @GetMapping("/checkToken")
+    public ResponseEntity<String> checkToken(){
+        try{
+            return userService.checkToken();
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return CafeUtils.getResponseEntity(CafeConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @Operation(
+            summary = "Change Password",
+            description = "Endpoint to change the password"
+    )
+    @SecurityRequirement(name = "bearerAuth")
+    @PostMapping("/changePassword")
+    public ResponseEntity<String> changePassword(@RequestBody(required = true) Map<String, String> requestMap){
+        try{
+            return userService.changePassword(requestMap);
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return CafeUtils.getResponseEntity(CafeConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @Operation(
+            summary = "Forgot Password",
+            description = "Endpoint to forgot the password"
+    )
+    @PostMapping("/forgotPassword")
+    public ResponseEntity<String> forgotPassword(@RequestBody(required = true) Map<String, String> requestMap){
+        try{
+            return userService.forgotPassword(requestMap);
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return CafeUtils.getResponseEntity(CafeConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
 }
