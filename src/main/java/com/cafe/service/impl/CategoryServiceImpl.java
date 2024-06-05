@@ -63,8 +63,10 @@ public class CategoryServiceImpl implements CategoryService {
     public ResponseEntity<List<Category>> getAllCategory(String filterValue) {
         try{
             if(!Strings.isNullOrEmpty(filterValue) && filterValue.equalsIgnoreCase("true")){
+                log.info("Inside if filterVale = true");
                 return new ResponseEntity<>(categoryRepository.getAllCategory(), HttpStatus.OK);
             }
+            log.info("Inside if filterVale is not set");
             return new ResponseEntity<>(categoryRepository.findAll(), HttpStatus.OK);
         }catch(Exception ex){
             ex.printStackTrace();
