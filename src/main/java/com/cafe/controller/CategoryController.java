@@ -38,12 +38,12 @@ public class CategoryController {
     }
 
     @Operation(
-            summary = "get all category",
-            description = "Endpoint to get all category."
+            summary = "Get all categories",
+            description = "Endpoint to get all categories."
     )
     @SecurityRequirement(name = "bearerAuth")
     @GetMapping("/get")
-    public ResponseEntity<List<Category>> getAllCategory(@RequestBody(required = false) String filterValue){
+    public ResponseEntity<List<Category>> getAllCategory(@RequestParam(required = false) String filterValue){
         try{
             return categoryService.getAllCategory(filterValue);
         }catch(Exception ex){
@@ -53,8 +53,8 @@ public class CategoryController {
     }
 
     @Operation(
-            summary = "update category",
-            description = "Endpoint to update category."
+            summary = "Update category",
+            description = "Endpoint to update a category."
     )
     @SecurityRequirement(name = "bearerAuth")
     @PostMapping("/update")
