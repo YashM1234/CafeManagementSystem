@@ -10,7 +10,7 @@ This project is a backend for a Cafe Management System, built using Spring Boot 
 
 ## Features
 
-- Product Management (Add, Update, Delete, View Products)
+- Product Management
 - Order Management
 - Billing System
 - User Authentication and Authorization
@@ -36,7 +36,7 @@ This project is a backend for a Cafe Management System, built using Spring Boot 
    git clone https://github.com/yourusername/cafe-management-system.git
    cd cafe-management-system```
 
-2. **Update the application.properties file**
+2. **Update the application-local.properties file**
    ```sh
    spring.datasource.driver-class-name=org.postgresql.Driver
    spring.datasource.url=jdbc:postgresql://localhost:5432/cafe
@@ -53,17 +53,28 @@ This project is a backend for a Cafe Management System, built using Spring Boot 
    spring.jpa.show-sql=true
 
    #setup jwt secret key
-   cafe.app.jwtSecret=Enter secret Key Here (You Can Generate it via KeyGenerator in util package).
+   cafe.app.jwtSecret=Enter secret Key Here (You Can Generate it via KeyGenerator in Utils package).
 
    # Mail server configuration
    spring.mail.host=smtp.gmail.com
    spring.mail.port=587
    spring.mail.username=Enter your Email Id
-   spring.mail.password=Enter 16 digit password 
+   spring.mail.password=Enter 16 digits application-specific password for your Gmail account.
    spring.mail.properties.mail.smtp.auth=true
    spring.mail.properties.mail.smtp.starttls.enable=true
 
    #logging.level.org.springframework=DEBUG
    #logging.level.com.zaxxer.hikari=DEBUG
-```
+   ```
+
+3. Add Your Email Address Which You Add In application-local.properties in EmailUtils in Utils Package As Per Given Instructions In Code.
    
+5. Build and run the project
+   ```sh
+   mvn clean install
+   ```
+6. Now Run The Application
+   
+Note: The backend server will start at http://localhost:8080
+
+8. Frontend For Cafe Management System is https://github.com/YashM1234/Cafe-Management-System-Frontend
