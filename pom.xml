@@ -95,7 +95,7 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
-			<version>5.5.6</version>
+			<version>6.2.7</version>
 		</dependency>
 
 		<!-- JJWT (Java JWT) -->
